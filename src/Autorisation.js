@@ -7,6 +7,7 @@ const Autorisation = () => {
 
     useEffect(() => {
         dispatch(changeCurrent());
+        // check like this localStorage.getItem('currentAccount') !== "null" considered bad practice and may lead to potential issues
         if(localStorage.getItem('currentAccount') !== null && localStorage.getItem('currentAccount') !== "null"){
             navigate('/dashboard');
         }else{
@@ -18,14 +19,14 @@ const Autorisation = () => {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    const accounts = useSelector(state => state.accountsReducer.accounts); 
+    const accounts = useSelector(state => state.accountsReducer.accounts);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
+
         const accountCheck = accounts.some((account) => {
             return account.name.toLowerCase() === login.toLowerCase() && account.password.toLowerCase() === password.toLowerCase();
         });

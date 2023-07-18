@@ -22,14 +22,15 @@ export const changeUnitsReducer = (state = initialState, action) => {
         case DELETE_UNIT:
             return {
                 ...state,
-                units: state.units.filter(unit => 
-                    unit.unitName + unit.unitLogin + unit.unitPassword !== 
+                // this is not reliable should be done using is of unit to filter the list
+                units: state.units.filter(unit =>
+                    unit.unitName + unit.unitLogin + unit.unitPassword !==
                     action.unit.unitName + action.unit.unitLogin + action.unit.unitPassword
                 )
             };
         case CHANGE_UNIT:
             const changedUnit = action.changedUnit;
-            
+
             const changedUnits = state.units.map((unit) => {
                 if (unit.unitName === changedUnit.unitName) {
                 return changedUnit;
@@ -37,7 +38,7 @@ export const changeUnitsReducer = (state = initialState, action) => {
                 return unit;
                 }
             });
-            
+
             return {
                 ...state,
                 units: changedUnits

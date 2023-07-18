@@ -1,5 +1,5 @@
 
-
+/* Common thing may be in this file but view dependent styles should be moved out */
 .add input::placeholder{
   color: #8CE763;
 }
@@ -20,41 +20,41 @@
     font-family: "Montserrat", sans-serif;
     font-weight: bold;
   }
-    
+
   .dashBoard input {
     display: block;
     margin: 0 auto;
   }
-  
+
   .dashBoard div.row {
     max-width: 100%;
     margin: 0;
     --bs-gutter-x: 0;
   }
-  
+
   .dashBoard .col-4 {
     margin: 0;
     padding: 0;
   }
-  
+
   .dashBoard .col-8 {
     margin: 0;
     padding: 0;
   }
-  
+
   .dashBoard .logOut {
     background-color: #51BB56;
     max-height: 80px;
     text-align: right;
   }
-  
+
   .dashBoard .logOut span {
     color: #FFF;
     font-size: 20px;
     float: left;
     padding: 25px 30px 0 35px;
   }
-  
+
   .dashBoard .logOut button {
     font-size: 20px;
     margin: 15px 30px 15px 0;
@@ -68,11 +68,11 @@
     color: #FFF;
     text-decoration: none;
   }
-  
+
   .dashBoard .logOut button:hover{
     background-color: #8CE763;
   }
-  
+
   .dashBoard .add {
     display: flex;
     align-items: center;
@@ -80,18 +80,18 @@
     height: 416px;
     text-align: center;
   }
-  
+
   .dashBoard input {
     border: none;
     outline: none;
     font-family: "Montserrat", sans-serif;
     font-weight: bold;
   }
-  
+
   .dashBoard input[type=text]:first-child {
     margin-top: 0;
   }
-  
+
   .dashBoard input[type=text], .dashBoard input[type=password] {
     display: inline-block;
     margin-top: 30px;
@@ -101,7 +101,7 @@
     padding: 13px 20px;
     background-color: #51BB56;
   }
-  
+
   .dashBoard input[type=submit] {
     display: inline-block;
     margin-top: 35px;
@@ -110,7 +110,7 @@
     padding: 5px 30px;
     background-color: #51BB56;
   }
-  
+
   .dashBoard .units {
     margin-left: 35px;
     margin-top: 28px;
@@ -121,7 +121,7 @@
   .dashBoard .units::-webkit-scrollbar {
     width: 0px; /* Ширина полосы прокрутки */
   }
-  
+
   .dashBoard .unit:first-child{
     margin-top: 0px;
 
@@ -130,20 +130,20 @@
   .dashBoard .unit {
     margin-top: 15px;
   }
-  
+
   .dashBoard .unit-info {
     display: inline-block;
     background-color: #8CE763;
   }
-  
+
   .dashBoard .unit-info p:first-child {
     padding-top: 10px;
   }
-  
+
   .dashBoard .unit-info p:last-child {
     padding-bottom: 10px;
   }
-  
+
   .dashBoard .unit-info p {
     color: white;
     font-size: 15px;
@@ -151,7 +151,7 @@
     padding: 0 20px;
     line-height: normal;
   }
-  
+
   .dashBoard .unit-delete {
     display: inline-block;
     position: relative;
@@ -161,25 +161,25 @@
     height: 55px;
     left: -5px;
   }
-  
+
   .dashBoard .unit-delete img {
     padding: 8px;
   }
-  
+
   .dashBoard .PageNumbers {
     margin-top: 18px;
     color: #8CE763;
     font-size: 20px;
   }
-  
+
   .dashBoard .PageNumbers span:first-child{
     padding-left: 0;
   }
-  
+
   .PageNumbers span{
     padding-left: 5px;
   }
-  
+
   .dashBoard .PageNumbers span.pageNumber-activ {
     color: #51BB56;
   }/*# sourceMappingURL=index.css.map */
