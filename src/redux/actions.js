@@ -8,10 +8,11 @@ import { DELETE_UNIT } from "./type"
 import { SAVE_UNITS } from "./type"
 import { CHANGE_CHANGESTATE } from "./type"
 import { CHANGE_UNIT } from "./type"
-
+// Suggestions: you dont want to import one by one better to import all in once
+import * as types from "./type";
 
 // actions
-
+// Suggestions: use redux toolkit
 export function autorisation(login){
     return{
         type: AUTORISATION,

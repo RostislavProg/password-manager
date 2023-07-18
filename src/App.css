@@ -1,6 +1,5 @@
 
-
-/* test  */
+/* Common thing may be in this file but view dependent styles should be moved out */
 .add input::placeholder{
   color: #8CE763;
 }
