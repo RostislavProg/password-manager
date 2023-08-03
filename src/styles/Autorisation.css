@@ -1,0 +1,54 @@
+.autoAndReg {
+    margin: 100px auto;
+    max-width: 470px;
+    text-align: center;
+    background-color: #51BB56;
+    font-weight: bold;
+    }
+    
+    .autoAndReg h1 {
+    font-size: 32px;
+    color: white;
+    padding-top: 35px;
+    margin: 0;
+    }
+    
+    .autoAndReg input {
+    display: block;
+    margin: 0 auto;
+    border: none;
+    outline: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    }
+    
+    .autoAndReg input[type=login], input[type=password] {
+    margin-top: 30px;
+    width: 290px;
+    color: white;
+    font-size: 20px;
+    padding: 13px 20px;
+    background-color: #8CE763;
+    }
+    
+    .autoAndReg a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      margin: 15px 0;
+    }
+    
+    .autoAndReg input[type=submit] {
+    display: inline-block;
+    color: white;
+    font-size: 24px;
+    padding: 5px 30px;
+    background-color: #8CE763;
+    margin-bottom: 35px;
+    }/*# sourceMappingURL=autoAndReg.css.map */
+
+
+    .autoAndReg form input::placeholder{
+        color: #51BB56;
+        }
