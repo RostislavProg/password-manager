@@ -1,0 +1,12 @@
+.dashBoard .add {
+  display: flex;
+  align-items: center;
+  background-color: #8CE763;
+  height: 366.5px;
+  text-align: center;
+}
+
+.add input::placeholder{
+  color: #8CE763;
+}
+

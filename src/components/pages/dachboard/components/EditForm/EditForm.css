@@ -1,0 +1,14 @@
+.dashBoard .add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #8CE763;
+  height: 366.5px;
+  text-align: center;
+}
+
+.dashBoard .add span {
+  font-size: 24px;
+  color: white;
+  width: 70%;
+}

@@ -1,0 +1,10 @@
+.dashBoard .units {
+    margin-left: 35px;
+    margin-top: 28px;
+    height: 440px;
+    overflow-y: scroll;
+  }
+  
+  .dashBoard .units::-webkit-scrollbar {
+    width: 0px;
+  }

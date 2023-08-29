@@ -1,0 +1,59 @@
+.dashBoard {
+  margin: 100px auto;
+  width: 980px;
+  height: 493px;
+  background-color: #C6FFAB;
+  box-sizing: border-box;
+  font-weight: bold;
+}
+
+.dashBoard div.row {
+  max-width: 100%;
+  margin: 0;
+  --bs-gutter-x: 0;
+}
+
+.dashBoard .col-4 {
+  margin: 0;
+  padding: 0;
+}
+
+.dashBoard .col-8 {
+  margin: 0;
+  padding: 0;
+}
+
+.dashBoard input {
+  display: block;
+  margin: 0 auto;
+}
+
+.dashBoard input {
+  border: none;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+}
+
+.dashBoard input[type=text]:first-child {
+  margin-top: 0;
+}
+
+.dashBoard input[type=text], .dashBoard input[type=password] {
+  display: inline-block;
+  margin-top: 30px;
+  width: 250px;
+  color: #8CE763;
+  font-size: 20px;
+  padding: 13px 20px;
+  background-color: #51BB56;
+}
+
+.dashBoard input[type=submit] {
+  display: inline-block;
+  margin-top: 35px;
+  color: white;
+  font-size: 24px;
+  padding: 5px 30px;
+  background-color: #51BB56;
+}

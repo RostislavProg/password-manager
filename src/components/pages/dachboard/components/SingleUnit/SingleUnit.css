@@ -1,0 +1,49 @@
+.dashBoard .unit:first-child{
+  margin-top: 0px;
+
+}
+
+.dashBoard .unit {
+  margin-top: 15px;
+}
+
+.dashBoard .unit-info {
+  display: inline-block;
+  background-color: #8CE763;
+}
+
+.dashBoard .unit-info p:first-child {
+  padding-top: 10px;
+}
+
+.dashBoard .unit-info p:last-child {
+  padding-bottom: 10px;
+}
+
+.dashBoard .unit-info p {
+  color: white;
+  font-size: 15px;
+  margin: 0;
+  padding: 0 20px;
+  line-height: normal;
+}
+
+.dashBoard .unit-info p span {
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+.dashBoard .unit-info p span:hover{
+
+  color: #51BB56;
+}
+
+.dashBoard .unit-delete {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  background-color: #51BB56;
+  width: 55px;
+  height: 55px;
+  left: -5px;
+}
