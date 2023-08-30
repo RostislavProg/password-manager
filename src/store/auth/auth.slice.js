@@ -22,6 +22,12 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
     },
     logout: (state) => {
+      const id = state.user.content.id
+      const index = state.accountsContent.findIndex(item => item.id === id);
+
+      state.accountsContent[index].userContent = state.user.content.userContent
+      localStorage.setItem('accounts', JSON.stringify(state.accounts));
+      localStorage.setItem('accountsContent', JSON.stringify(state.accountsContent));
       state.user.info = null;
       state.user.content = null
       state.isAuthenticated = false;
@@ -45,10 +51,15 @@ const authSlice = createSlice({
 
       state.user.content.userContent[index].log = log;
       state.user.content.userContent[index].pass = pass;
+    },
+    jsonContent: (state, action) => {
+      const {jsonAccounts, jsonAccountsContent} = action.payload;
+      state.accounts = jsonAccounts;
+      state.accountsContent = jsonAccountsContent;
     }
   },
 });
 
-export const { login, logout, addAccount, addContent, deleteContent, editContent } = authSlice.actions;
+export const { login, logout, addAccount, addContent, deleteContent, editContent, jsonContent } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -49,7 +49,7 @@ const Registration = () => {
         } else {
             const newUser = { login: event.login, password: event.password, id: uuidv4()}
             dispatch(addAccount(newUser));
-            navigate('/dashboard');
+            navigate('/');
         }
     }
 

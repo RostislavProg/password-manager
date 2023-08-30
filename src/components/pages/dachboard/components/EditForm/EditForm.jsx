@@ -3,6 +3,7 @@ import { useReducer } from "react";
 
 import './EditForm.css'
 import { editContent } from "../../../../../store/auth/auth.slice";
+import { select } from "../../../../../store/edit/edit.slice";
 
 const EditForm = () => {
     
@@ -18,7 +19,7 @@ const EditForm = () => {
             case 'errorUpdate': 
                 return { ...state, error: action.error };
             case 'zeroing': 
-                return { ...state, service: '', log: '', pass: '', error: '' };
+                return { ...state, log: '', pass: '', error: '' };
             default: return state;
         }
     }, {log: '', pass: '', error: ''});
@@ -34,6 +35,7 @@ const EditForm = () => {
         } else {
             const unitToEdit = {id: selectedUnitId, log: event.log, pass: event.pass}
             dispatch(editContent(unitToEdit));
+            dispatch(select(""))
             updateEvent({type: 'zeroing'})
         }
     }

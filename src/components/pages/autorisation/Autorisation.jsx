@@ -1,16 +1,24 @@
 import { useReducer } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux'
+import { useEffect } from "react";
 
 import './Autorisation.css';
-import { login } from "../../../store/auth/auth.slice";
+import { jsonContent, login } from "../../../store/auth/auth.slice";
 import { useDispatch } from "react-redux";
 
 const Autorisation = () => {
 
-    const { accounts } = useSelector((state) => state.auth)
+    const { accounts } = useSelector((state) => state.auth);
+    const jsonAccounts = JSON.parse(localStorage.getItem('accounts'));
+    const jsonAccountsContent = JSON.parse(localStorage.getItem('accountsContent'));
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    useEffect(() => {
+        console.log({jsonAccounts, jsonAccountsContent});
+        dispatch(jsonContent({jsonAccounts, jsonAccountsContent}));
+    }, [])
 
     const [event, updateEvent] = useReducer((state, action) => {
         switch(action.type) {
