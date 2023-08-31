@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../store/store.ts"; // Замените на путь к вашему корневому редьюсеру
+import { RootState } from "../store/store.ts";
 
 export const useGetUser = () => {
     const userId = useSelector((state: RootState) => state.auth.userId)
@@ -11,7 +11,7 @@ export const useGetUser = () => {
     
     const user = useSelector((state: RootState) => {
         const user = state.auth.accounts.find(account => account.id === userId);
-        return user ? user : null; // Обратите внимание, что тут лучше возвращать null вместо пустого массива, так как user - это объект, а не массив.
+        return user ? user : null;
     });
     
     return { user, userContent };
