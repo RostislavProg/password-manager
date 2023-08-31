@@ -181,23 +181,6 @@
   color: #51BB56;
 }
 
-
-
 .add input::placeholder{
   color: #8CE763;
-}
-
-/*test*/
-
-.clicker{
-
-}
-
-.clicker button{
-  width: 30px;
-}
-
-.clicker button:hover{
-  width: 30px;
-  border: red 2px solid;
 }
