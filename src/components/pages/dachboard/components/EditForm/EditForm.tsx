@@ -1,10 +1,10 @@
+import './EditForm.css'
+
 import React, { useReducer, ChangeEvent, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import './EditForm.css'
-import { editContent } from "../../../../../store/auth/auth.slice.ts"; // Удалите расширение .ts
-import { select } from "../../../../../store/edit/edit.slice.ts"; // Удалите расширение .ts
-import { EventState } from "../../../../../types/eventState.ts";
+import { editContent } from "../../../../../store/auth/auth.slice.ts";
+import { select } from "../../../../../store/edit/edit.slice.ts";
+import { EventState } from "../../../../../types/event";
 
 
 const EditForm: React.FC = () => {

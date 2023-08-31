@@ -1,11 +1,11 @@
+import './SingleUnit.css';
+
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import deleteImg from '../../../../../icons/delete.png';
 import editImg from '../../../../../icons/edit.png';
-import { deleteContent } from '../../../../../store/auth/auth.slice.ts'; // Удалите расширение .ts
-import { select } from '../../../../../store/edit/edit.slice.ts'; // Удалите расширение .ts
-
-import './SingleUnit.css';
+import { deleteContent } from '../../../../../store/auth/auth.slice.ts';
+import { select } from '../../../../../store/edit/edit.slice.ts';
 import { SingleUnitProps } from '../../../../../types/props.ts';
 
 

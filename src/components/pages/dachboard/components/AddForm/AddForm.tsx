@@ -1,11 +1,10 @@
+import './AddForm.css';
+
 import React, { useReducer, ChangeEvent, FormEvent } from "react";
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
-
 import { addContent } from "../../../../../store/auth/auth.slice.ts";
-
-import './AddForm.css';
-import { EventState } from "../../../../../types/eventState.ts";
+import { EventState } from "../../../../../types/event";
 
 
 const AddForm: React.FC = () => {

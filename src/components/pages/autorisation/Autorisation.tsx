@@ -1,11 +1,10 @@
+import './Autorisation.css';
+
 import React, { useEffect, useReducer } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { login } from "../../../store/auth/auth.slice.ts";
-import { useDispatch } from "react-redux";
-
-import './Autorisation.css';
-import { EventState } from "../../../types/eventState.ts";
+import { EventAction, EventState } from "../../../types/event";
 
 
 const Autorisation: React.FC = () => {
@@ -20,7 +19,7 @@ const Autorisation: React.FC = () => {
         }
     }, []);
 
-    const [event, updateEvent] = useReducer((state: EventState, action: any) => {
+    const [event, updateEvent] = useReducer((state: EventState, action: EventAction) => {
         switch (action.type) {
             case 'loginUpdate':
                 return { ...state, login: action.login };
@@ -52,7 +51,7 @@ const Autorisation: React.FC = () => {
             });
         } else {
             dispatch(login(accountVerification.id));
-            navigate('/dashboard'); // Перенаправление здесь
+            navigate('/dashboard');
         }
     };
 

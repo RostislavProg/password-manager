@@ -1,5 +1,6 @@
-import React from 'react';
 import './Logout.css';
+
+import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +20,7 @@ const Logout: React.FC = () => {
 
     return (
         <div className="logOut">
-            <span>{user?.login}</span> {/* Добавил ?. для обработки случая, когда user может быть null */}
+            <span>{user?.login}</span>
             <Button onClick={handleLogout}>log out</Button>
         </div>
     );

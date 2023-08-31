@@ -1,23 +1,11 @@
+import './Registration.css';
+
 import React, { useEffect, useReducer } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { useSelector, useDispatch } from 'react-redux';
 import { addAccount } from '../../../store/auth/auth.slice.ts'; // Удалите расширение .ts
-
-import './Registration.css';
-
-interface EventState {
-    login: string;
-    password: string;
-    repPassword: string;
-    error: string;
-}
-
-type EventAction =
-    | { type: 'loginUpdate'; login: string }
-    | { type: 'passwordUpdate'; password: string }
-    | { type: 'repPasswordUpdate'; repPassword: string }
-    | { type: 'errorUpdate'; error: string };
+import { EventAction, EventState } from '../../../types/event';
 
 const Registration: React.FC = () => {
 
