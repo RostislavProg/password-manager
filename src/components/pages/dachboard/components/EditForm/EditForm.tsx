@@ -1,30 +1,32 @@
+import React, { useReducer, ChangeEvent, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useReducer } from "react";
 
 import './EditForm.css'
-import { editContent } from "../../../../../store/auth/auth.slice";
-import { select } from "../../../../../store/edit/edit.slice";
+import { editContent } from "../../../../../store/auth/auth.slice.ts"; // Удалите расширение .ts
+import { select } from "../../../../../store/edit/edit.slice.ts"; // Удалите расширение .ts
+import { EventState } from "../../../../../types/eventState.ts";
 
-const EditForm = () => {
+
+const EditForm: React.FC = () => {
     
-    const { selectedUnitId } = useSelector((state) => state.edit)
+    const { selectedUnitId } = useSelector((state) => state.edit) as { selectedUnitId: string };
     const dispatch = useDispatch()
 
-    const [event, updateEvent] = useReducer((state, action) => {
+    const [event, updateEvent] = useReducer((state: EventState, action: { type: string; log?: string; pass?: string; error?: string; }) => {
         switch(action.type) {
             case 'logUpdate': 
-                return { ...state, log: action.log };
+                return { ...state, log: action.log || '' };
             case 'passUpdate': 
-                return { ...state, pass: action.pass };
+                return { ...state, pass: action.pass || '' };
             case 'errorUpdate': 
-                return { ...state, error: action.error };
+                return { ...state, error: action.error || '' };
             case 'zeroing': 
                 return { ...state, log: '', pass: '', error: '' };
             default: return state;
         }
     }, {log: '', pass: '', error: ''});
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
     
         if(event.log === '' || event.pass === '') {
@@ -40,14 +42,14 @@ const EditForm = () => {
         }
     }
 
-    const handleLogChange = (e) => {
+    const handleLogChange = (e: ChangeEvent<HTMLInputElement>) => {
         updateEvent({
             type: 'logUpdate',
             log: e.target.value
         });
     }
 
-    const handlePassChange = (e) => {
+    const handlePassChange = (e: ChangeEvent<HTMLInputElement>) => {
         updateEvent({
             type: 'passUpdate',
             pass: e.target.value

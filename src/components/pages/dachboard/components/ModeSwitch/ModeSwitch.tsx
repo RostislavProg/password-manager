@@ -1,8 +1,9 @@
-import './ModeSwitch.css'
-import { changeMode } from '../../../../../store/edit/edit.slice';
+import React from 'react';
+import './ModeSwitch.css';
 import { useDispatch } from 'react-redux';
+import { changeMode } from '../../../../../store/edit/edit.slice.ts'; // Удалите расширение .ts
 
-const ModeSwitch = () => {
+const ModeSwitch: React.FC = () => {
 
     const dispatch = useDispatch();
 

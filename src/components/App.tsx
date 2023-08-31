@@ -1,25 +1,23 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Dashboard from './pages/dachboard/Dashboard';
-import Autorisation from './pages/autorisation/Autorisation'
-import Registration from './pages/registration/Registration';
+import React, { useEffect } from 'react';
+import Dashboard from './pages/dachboard/Dashboard.tsx';
+import Autorisation from './pages/autorisation/Autorisation.tsx'
+import Registration from './pages/registration/Registration.tsx';
 import { Route, Routes } from 'react-router-dom';
-import { useEffect } from "react";
-import { jsonContent } from "../store/auth/auth.slice";
+import { jsonContent } from "../store/auth/auth.slice.ts";
 import { useDispatch } from 'react-redux';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
 
   const jsonUserID = JSON.parse(localStorage.getItem('userId'));
   const jsonAccounts = JSON.parse(localStorage.getItem('accounts'));
   const jsonAccountsContent = JSON.parse(localStorage.getItem('accountsContent'));
+    
+  const dispatch = useDispatch();
   
-  const dispatch = useDispatch()
-
   useEffect(() => {
-    dispatch(jsonContent({jsonUserID, jsonAccounts, jsonAccountsContent}))
-  }, [])
+      dispatch(jsonContent({ jsonUserID, jsonAccounts, jsonAccountsContent }));
+  }, []);
 
 
   return (

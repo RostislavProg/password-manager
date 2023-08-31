@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { EditState } from '../../types/edit';
 
-const initialState = {
+const initialState: EditState = {
   editMode: false,
   selectedUnitId: ""
 };

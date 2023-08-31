@@ -1,15 +1,15 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
-import SingleUnit from '../SingleUnit/SingleUnit';
+import SingleUnit from '../SingleUnit/SingleUnit.tsx'; // Удалите расширение .tsx
 import { Col } from 'react-bootstrap';
 
 import './Units.css';
-import { useGetUser } from '../../../../../hooks/useGetUser';
+import { useGetUser } from '../../../../../hooks/useGetUser.ts'; // Удалите расширение .ts
 
+const Units: React.FC = () => {
 
-const Units = () => {
-
-    const {userContent} = useGetUser();
-    const { editMode } = useSelector((state) => state.edit)
+    const { userContent } = useGetUser();
+    const { editMode } = useSelector((state) => state.edit);
 
     return (
         <Col md={8}>
@@ -19,7 +19,7 @@ const Units = () => {
                     const log = res.log;
                     const pass = res.pass;
                     const id = res.id;
-                    return <SingleUnit key={id} service={service} log={log} pass={pass} id={id} editMode={editMode}/>;
+                    return <SingleUnit key={id} service={service} log={log} pass={pass} id={id} editMode={editMode} />;
                 }) : null}
             </div>
         </Col>

@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { AuthState } from '../../types/auth';
 
-const initialState = {
+const initialState: AuthState = {
   userId: "",
-  accounts: [], //{login: 'Nikita', password: '123456', id: 1}
-  accountsContent: []//{ userContent: [{ service: 'Facebook', log: 'NikitaFB', pass: '987654321', id: 12 }], id: 1 }
+  accounts: [],
+  accountsContent: []
 };
 
 const authSlice = createSlice({
