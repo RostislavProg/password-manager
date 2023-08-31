@@ -1,6 +1,6 @@
 import './Registration.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 import { useSelector, useDispatch } from 'react-redux'
@@ -9,8 +9,15 @@ import { addAccount } from '../../../store/auth/auth.slice';
 const Registration = () => {
 
     const { accounts } = useSelector((state) => state.auth)
+    const jsonUserID = JSON.parse(localStorage.getItem('userId'));
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if((!(jsonUserID === null) && !(jsonUserID === ""))){
+            navigate("/dashboard")
+        }
+    }, [])
 
     const [event, updateEvent] = useReducer((state, action) => {
         switch(action.type) {
@@ -28,9 +35,7 @@ const Registration = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         const accountVerification = accounts.find(account => account.login === event.login && account.password === event.password);
-
         if(event.login === '' || event.password === '' || event.repPassword === '') {
             updateEvent({
                 type: 'errorUpdate',

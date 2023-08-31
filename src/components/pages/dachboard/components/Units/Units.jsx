@@ -3,11 +3,12 @@ import SingleUnit from '../SingleUnit/SingleUnit';
 import { Col } from 'react-bootstrap';
 
 import './Units.css';
+import { useGetUser } from '../../../../../hooks/useGetUser';
 
 
 const Units = () => {
 
-    const userContent = useSelector((state) => state.auth.user.content.userContent)
+    const {userContent} = useGetUser();
     const { editMode } = useSelector((state) => state.edit)
 
     return (

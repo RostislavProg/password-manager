@@ -1,6 +1,5 @@
 import './Dashboard.css';
 import { useEffect } from "react";
-import { useDispatch } from 'react-redux'
 
 import { Row, Col } from 'react-bootstrap';
 import Units from './components/Units/Units';
@@ -14,18 +13,18 @@ import { useSelector } from 'react-redux'
 const Dashboard = () => {
 
     const navigate = useNavigate()
-    const { isAuthenticated } = useSelector((state) => state.auth)
+    const jsonUserID = JSON.parse(localStorage.getItem('userId'));
     const { editMode } = useSelector((state) => state.edit)
 
     useEffect(() => {
-        if(!isAuthenticated){
-            navigate("/")
+        if((jsonUserID === null && jsonUserID === "")){
+            navigate('/');
         }
     }, [])
 
     return (
         <section className='dashBoard'>
-            {isAuthenticated ? (
+            {!(jsonUserID === null && jsonUserID === "") ? (
                 <Row>
                     <Units />
                     <Col md={4}>

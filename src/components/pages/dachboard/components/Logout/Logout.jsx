@@ -4,10 +4,11 @@ import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../../../../store/auth/auth.slice';
+import { useGetUser } from '../../../../../hooks/useGetUser';
 
 const Logout = () => {
 
-    const { user } = useSelector((state) => state.auth)
+    const { user } = useGetUser()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -18,7 +19,7 @@ const Logout = () => {
 
     return (
         <div className="logOut">
-            <span>{user.info.login}</span>
+            <span>{user.login}</span>
             <Button onClick={handleLogout}>log out</Button>
         </div>
     );
