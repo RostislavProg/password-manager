@@ -16,3 +16,8 @@ export interface AuthState {
   accounts: Account[];
   accountsContent: { userContent: UserContent[], id: string }[];
 }
+
+export interface EditState {
+  editMode: boolean;
+  selectedUnitId: string;
+}

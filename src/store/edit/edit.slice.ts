@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { EditState } from '../../types/edit';
+import {  } from '../../types/slices.ts';
 
 const initialState: EditState = {
   editMode: false,

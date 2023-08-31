@@ -1,6 +1,7 @@
 export interface EventState {
   login: string;
   password: string;
+  repPassword: string;
   error: string;
 }
 export type EventAction =

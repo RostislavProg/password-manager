@@ -4,13 +4,14 @@ import React, { useReducer, ChangeEvent, FormEvent } from "react";
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
 import { addContent } from "../../../../../store/auth/auth.slice.ts";
-import { EventState } from "../../../../../types/event";
+import { EventState } from "../../../../../types/event.ts";
+import { FormtAction } from '../../../../../types/forms.ts';
 
 
 const AddForm: React.FC = () => {
     const dispatch = useDispatch()
 
-    const [event, updateEvent] = useReducer((state: EventState, action: { type: string; service?: string; log?: string; pass?: string; error?: string; }) => {
+    const [event, updateEvent] = useReducer((state: EventState, action: FormtAction) => {
         switch(action.type) {
             case 'serviceUpdate': 
                 return { ...state, service: action.service || '' };
@@ -34,6 +35,11 @@ const AddForm: React.FC = () => {
                 type: 'errorUpdate',
                 error: 'Fill in all fields'
             })
+        }else if (event.log.length <= 6 || event.pass.length <= 6) {
+            updateEvent({
+                type: 'errorUpdate',
+                error: 'Login and password must be longer than 8 characters'
+            });
         } else {
             const contentData = {
                 service: event.service,
@@ -74,8 +80,8 @@ const AddForm: React.FC = () => {
                 <input onChange={handleSeviceChange} value={event.service} placeholder="Service/programme" type="text" maxLength={15}/>
                 <input onChange={handleLogChange} value={event.log} placeholder="Login" type="text" maxLength={15}/>
                 <input onChange={handlePassChange} value={event.pass} placeholder="Password" type="password" maxLength={15} autoComplete="new-password"/>
-                {event.error && <div className="error-message">{event.error}</div>}
                 <input type="submit" value="ADD"/>
+                {event.error && <div className="error-message" style={{ color: '#e61a1a', fontSize: '12px' }}>{event.error}</div>}
             </form>
         </div>
     );

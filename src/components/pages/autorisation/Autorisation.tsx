@@ -86,7 +86,7 @@ const Autorisation: React.FC = () => {
                     placeholder='Password'
                     type="password"
                 />
-                {event.error && <div className="error-message">{event.error}</div>}
+                {event.error && <div className="error-message" style={{ paddingTop: '15px', color: '#e61a1a' }}>{event.error}</div>}
                 <Link to="/registration">sign up</Link>
                 <input type="submit" value="log in" />
             </form>

@@ -4,7 +4,8 @@ import React, { useReducer, ChangeEvent, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editContent } from "../../../../../store/auth/auth.slice.ts";
 import { select } from "../../../../../store/edit/edit.slice.ts";
-import { EventState } from "../../../../../types/event";
+import { EventState } from "../../../../../types/event.ts";
+import { FormtAction } from '../../../../../types/forms.ts';
 
 
 const EditForm: React.FC = () => {
@@ -12,7 +13,7 @@ const EditForm: React.FC = () => {
     const { selectedUnitId } = useSelector((state) => state.edit) as { selectedUnitId: string };
     const dispatch = useDispatch()
 
-    const [event, updateEvent] = useReducer((state: EventState, action: { type: string; log?: string; pass?: string; error?: string; }) => {
+    const [event, updateEvent] = useReducer((state: EventState, action: FormtAction) => {
         switch(action.type) {
             case 'logUpdate': 
                 return { ...state, log: action.log || '' };
@@ -34,6 +35,11 @@ const EditForm: React.FC = () => {
                 type: 'errorUpdate',
                 error: 'Fill in all fields'
             })
+        } else if (event.log.length <= 6 || event.pass.length <= 6) {
+            updateEvent({
+                type: 'errorUpdate',
+                error: 'Login and password must be longer than 8 characters'
+            });
         } else {
             const unitToEdit = {id: selectedUnitId, log: event.log, pass: event.pass}
             dispatch(editContent(unitToEdit));
@@ -63,6 +69,7 @@ const EditForm: React.FC = () => {
                     <input onChange={handleLogChange} value={event.log} placeholder="Login" type="text" />
                     <input onChange={handlePassChange} value={event.pass} placeholder="Password" type="password" />
                     <input type="submit" value="EDIT"/>
+                {event.error && <div className="error-message" style={{ color: '#e61a1a', fontSize: '12px' }}>{event.error}</div>}
                 </form> : <span>Select what you want change</span>}
         </div>
     );
