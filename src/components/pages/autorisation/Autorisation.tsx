@@ -4,12 +4,14 @@ import React, { useEffect, useReducer } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from "../../../store/auth/auth.slice.ts";
-import { EventAction, EventState } from "../../../types/event";
+import { AuthState } from "../../../types/states.ts";
+import { EventAction } from "../../../types/actions.ts"
+import { RootState } from '../../../store/store.ts';
 
 
 const Autorisation: React.FC = () => {
-    const jsonUserID: string | null = JSON.parse(localStorage.getItem('userId'));
-    const { accounts } = useSelector((state) => state.auth);
+    const jsonUserID = JSON.parse(localStorage.getItem('userId') ?? 'null');
+    const { accounts } = useSelector((state: RootState) => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -19,7 +21,7 @@ const Autorisation: React.FC = () => {
         }
     }, []);
 
-    const [event, updateEvent] = useReducer((state: EventState, action: EventAction) => {
+    const [event, updateEvent] = useReducer((state: AuthState, action: EventAction) => {
         switch (action.type) {
             case 'loginUpdate':
                 return { ...state, login: action.login };

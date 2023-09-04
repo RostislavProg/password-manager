@@ -4,16 +4,17 @@ import React, { useReducer, ChangeEvent, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editContent } from "../../../../../store/auth/auth.slice.ts";
 import { select } from "../../../../../store/edit/edit.slice.ts";
-import { EventState } from "../../../../../types/event.ts";
-import { FormtAction } from '../../../../../types/forms.ts';
+import { FormsState } from "../../../../../types/states.ts";
+import { EventFormAction } from '../../../../../types/actions.ts';
+import { RootState } from '../../../../../store/store.ts';
 
 
 const EditForm: React.FC = () => {
     
-    const { selectedUnitId } = useSelector((state) => state.edit) as { selectedUnitId: string };
+    const { selectedUnitId } = useSelector((state: RootState) => state.edit) as { selectedUnitId: string };
     const dispatch = useDispatch()
 
-    const [event, updateEvent] = useReducer((state: EventState, action: FormtAction) => {
+    const [event, updateEvent] = useReducer((state: FormsState, action: EventFormAction) => {
         switch(action.type) {
             case 'logUpdate': 
                 return { ...state, log: action.log || '' };

@@ -4,14 +4,15 @@ import React, { useReducer, ChangeEvent, FormEvent } from "react";
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
 import { addContent } from "../../../../../store/auth/auth.slice.ts";
-import { EventState } from "../../../../../types/event.ts";
-import { FormtAction } from '../../../../../types/forms.ts';
+import { FormsState } from "../../../../../types/states.ts";
+import { EventFormAction } from '../../../../../types/actions.ts';
+
 
 
 const AddForm: React.FC = () => {
     const dispatch = useDispatch()
 
-    const [event, updateEvent] = useReducer((state: EventState, action: FormtAction) => {
+    const [event, updateEvent] = useReducer((state: FormsState, action: EventFormAction) => {
         switch(action.type) {
             case 'serviceUpdate': 
                 return { ...state, service: action.service || '' };

@@ -9,9 +9,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
 
-  const jsonUserID = JSON.parse(localStorage.getItem('userId'));
-  const jsonAccounts = JSON.parse(localStorage.getItem('accounts'));
-  const jsonAccountsContent = JSON.parse(localStorage.getItem('accountsContent'));
+  const jsonUserID = JSON.parse(localStorage.getItem('userId') ?? 'null');
+  const jsonAccounts = JSON.parse(localStorage.getItem('accounts') ?? 'null');
+  const jsonAccountsContent = JSON.parse(localStorage.getItem('accountsContent') ?? 'null');
     
   const dispatch = useDispatch();
   

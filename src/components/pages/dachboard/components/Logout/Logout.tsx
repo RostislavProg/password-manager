@@ -20,9 +20,13 @@ const Logout: React.FC = () => {
 
     return (
         <div className="logOut">
-            <span>{user?.login}</span>
-            <Button onClick={handleLogout}>log out</Button>
-        </div>
+        {user && (
+            <span style={{ fontSize: user.login?.length >= 10 ? "13px" : "20px" }}>
+                {user.login}
+            </span>
+        )}
+        <Button onClick={handleLogout}>log out</Button>
+    </div>
     );
 };
 

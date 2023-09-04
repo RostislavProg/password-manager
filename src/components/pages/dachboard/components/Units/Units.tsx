@@ -5,11 +5,12 @@ import { useSelector } from 'react-redux';
 import SingleUnit from '../SingleUnit/SingleUnit.tsx';
 import { Col } from 'react-bootstrap';
 import { useGetUser } from '../../../../../hooks/useGetUser.ts';
+import { RootState } from '../../../../../store/store.ts';
 
 const Units: React.FC = () => {
 
     const { userContent } = useGetUser();
-    const { editMode } = useSelector((state) => state.edit);
+    const { editMode } = useSelector((state: RootState) => state.edit);
 
     return (
         <Col md={8}>

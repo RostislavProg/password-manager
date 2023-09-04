@@ -4,13 +4,15 @@ import React, { useEffect, useReducer } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { useSelector, useDispatch } from 'react-redux';
-import { addAccount } from '../../../store/auth/auth.slice.ts'; // Удалите расширение .ts
-import { EventAction, EventState } from '../../../types/event.ts';
+import { addAccount } from '../../../store/auth/auth.slice.ts'; 
+import { RootState } from '../../../store/store.ts';
+import { RegState } from '../../../types/states.ts';
+import { EventAction } from '../../../types/actions.ts';
 
 const Registration: React.FC = () => {
 
-    const { accounts } = useSelector((state) => state.auth);
-    const jsonUserID = JSON.parse(localStorage.getItem('userId'));
+    const { accounts } = useSelector((state: RootState) => state.auth);
+    const jsonUserID = JSON.parse(localStorage.getItem('userId') ?? 'null');
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -20,7 +22,7 @@ const Registration: React.FC = () => {
         }
     }, []);
 
-    const [event, updateEvent] = useReducer((state: EventState, action: EventAction) => {
+    const [event, updateEvent] = useReducer((state: RegState, action: EventAction) => {
         switch (action.type) {
             case 'loginUpdate':
                 return { ...state, login: action.login };
@@ -90,9 +92,9 @@ const Registration: React.FC = () => {
         <section className='autoAndReg'>
             <h1>Registration</h1>
             <form onSubmit={handleSubmit}>
-                <input onChange={handleLoginChange} placeholder='Login' type="text" maxLength={11} />
-                <input onChange={handlePasswordChange} placeholder='Password' type="password" maxLength={13} autoComplete="new-password" />
-                <input onChange={handleRepPasswordChange} placeholder='Repeat password' type="password" maxLength={13} />
+                <input onChange={handleLoginChange} placeholder='Login' type="text" maxLength={15} />
+                <input onChange={handlePasswordChange} placeholder='Password' type="password" maxLength={15} autoComplete="new-password" />
+                <input onChange={handleRepPasswordChange} placeholder='Repeat password' type="password" maxLength={15} />
                 {event.error && <div className="error-message" style={{ paddingTop: '15px', color: '#e61a1a', fontSize: '12px' }}>{event.error}</div>}
                 <Link to="/">log in</Link>
                 <input type="submit" value="sign up" />

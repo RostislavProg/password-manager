@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store/store.ts';
+import { RootState } from '../../../store/store.ts';
 import Units from './components/Units/Units.tsx';
 import AddForm from './components/AddForm/AddForm.tsx';
 import Logout from './components/Logout/Logout.tsx';
@@ -13,7 +13,9 @@ import ModeSwitch from './components/ModeSwitch/ModeSwitch.tsx';
 
 const Dashboard: React.FC = () => {
     const navigate = useNavigate();
-    const jsonUserID = JSON.parse(localStorage.getItem('userId'));
+    const userIdString = localStorage.getItem('userId');
+    const jsonUserID = userIdString ? JSON.parse(userIdString) : null;
+    
     const { editMode } = useSelector((state: RootState) => state.edit);
 
     useEffect(() => {
