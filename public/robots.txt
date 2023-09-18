@@ -1,6 +1,2 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-<<<<<<< HEAD
-Disallow:
-=======
->>>>>>> new_try
