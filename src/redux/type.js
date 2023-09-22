@@ -1,9 +1,0 @@
-export const AUTORISATION = "AUTORISATION";
-export const REGISTRATION = "REGISTRATION";
-export const CHANGE_CURRENT = "CHANGE_CURRENT";
-export const CREATE_UNITS = "CREATE_UNITS";
-export const ADD_UNIT = "ADD_UNIT";
-export const DELETE_UNIT = "DELETE_UNIT";
-export const SAVE_UNITS = "SAVE_UNITS";
-export const CHANGE_CHANGESTATE = "CHANGE_CHANGESTATE";
-export const CHANGE_UNIT = "CHANGE_UNIT";
