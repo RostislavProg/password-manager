@@ -2,11 +2,11 @@ import './SingleUnit.css';
 
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteContent } from '../../../../../store/auth/auth.slice.ts';
-import { select } from '../../../../../store/edit/edit.slice.ts';
-import { SingleUnitProps } from '../../../../../types/props.ts';
-import deleteImg from '../../../../../icons/delete.png';
-import editImg from '../../../../../icons/edit.png';
+import { deleteContent } from 'store/auth/auth.slice.ts';
+import { select } from 'store/edit/edit.slice.ts';
+import { SingleUnitProps } from 'types/props.ts';
+import deleteImg from 'icons/delete.png';
+import editImg from 'icons/edit.png';
 
 const SingleUnit: React.FC<SingleUnitProps> = ({ service, log, pass, id, editMode }) => {
 

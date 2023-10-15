@@ -3,11 +3,11 @@ export type EventAction =
   | { type: 'passwordUpdate'; password: string }
   | { type: 'repPasswordUpdate'; repPassword: string }
   | { type: 'errorUpdate'; error: string }
-  | { type: 'zeroing'};
+  | { type: 'reset'};
 
 export type EventFormAction =
 | { type: 'serviceUpdate'; service: string }
 | { type: 'logUpdate'; log: string }
 | { type: 'passUpdate'; pass: string }
 | { type: 'errorUpdate'; error: string }
-| { type: 'zeroing'};
+| { type: 'reset'};

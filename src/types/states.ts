@@ -1,10 +1,4 @@
-export interface AuthState {
-  login: string;
-  password: string;
-  error: string;
-}
-
-export interface RegState {
+export interface AuthAndRegState {
   login: string;
   password: string;
   repPassword: string; 

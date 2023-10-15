@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-      "target": "es5",
-      "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
+    "target": "es5",
+    "lib": [
+    "dom",
+    "dom.iterable",
+    "esnext",
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -20,6 +20,13 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "allowImportingTsExtensions": true,
+    "baseUrl": "./src",
+    "paths": {
+      "store/*": ["store/*"],
+      "types/*": ["types/*"],
+      "hooks/*": ["hooks/*"],
+      "icons/*": ["icons/*"],
+    },
   },
   "include": ["src"]
 }

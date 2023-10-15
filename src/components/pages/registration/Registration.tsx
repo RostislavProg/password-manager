@@ -1,13 +1,12 @@
 import './Registration.css';
 
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { useSelector, useDispatch } from 'react-redux';
-import { addAccount } from '../../../store/auth/auth.slice.ts'; 
-import { RootState } from '../../../store/store.ts';
-import { RegState } from '../../../types/states.ts';
-import { EventAction } from '../../../types/actions.ts';
+import { addAccount } from 'store/auth/auth.slice.ts'; 
+import { RootState } from 'store/store.ts';
+import useReducerForAuthAndReg from 'hooks/useReducerForAuthAndReg';
 
 const Registration: React.FC = () => {
 
@@ -17,25 +16,12 @@ const Registration: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!(jsonUserID === null) && !(jsonUserID === "")) {
+        if (jsonUserID) {
             navigate("/dashboard");
         }
     }, []);
 
-    const [event, updateEvent] = useReducer((state: RegState, action: EventAction) => {
-        switch (action.type) {
-            case 'loginUpdate':
-                return { ...state, login: action.login };
-            case 'passwordUpdate':
-                return { ...state, password: action.password };
-            case 'repPasswordUpdate':
-                return { ...state, repPassword: action.repPassword };
-            case 'errorUpdate':
-                return { ...state, error: action.error };
-            default:
-                return state;
-        }
-    }, { login: '', password: '', repPassword: '', error: '' });
+    const [event, updateEvent] = useReducerForAuthAndReg();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -67,35 +53,22 @@ const Registration: React.FC = () => {
         }
     }
 
-    const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>, type: any) => {
+        const {name, value} = e.target;
         updateEvent({
-            type: 'loginUpdate',
-            login: e.target.value
-        });
-    }
-
-    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        updateEvent({
-            type: 'passwordUpdate',
-            password: e.target.value
-        });
-    }
-
-    const handleRepPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        updateEvent({
-            type: 'repPasswordUpdate',
-            repPassword: e.target.value
-        });
+            type,
+            [name]: value
+        })
     }
 
     return (
         <section className='autoAndReg'>
             <h1>Registration</h1>
             <form onSubmit={handleSubmit}>
-                <input onChange={handleLoginChange} placeholder='Login' type="text" maxLength={15} />
-                <input onChange={handlePasswordChange} placeholder='Password' type="password" maxLength={15} autoComplete="new-password" />
-                <input onChange={handleRepPasswordChange} placeholder='Repeat password' type="password" maxLength={15} />
-                {event.error && <div className="error-message" style={{ paddingTop: '15px', color: '#e61a1a', fontSize: '12px' }}>{event.error}</div>}
+                <input onChange={(e) => handleChange(e, "loginUpdate")} name='login' placeholder='Login' type="text" maxLength={15} />
+                <input onChange={(e) => handleChange(e, "passwordUpdate")} name='password' placeholder='Password' type="password" maxLength={15} autoComplete="new-password" />
+                <input onChange={(e) => handleChange(e, "repPasswordUpdate")} name='repPassword' placeholder='Repeat password' type="password" maxLength={15} />
+                {event.error && <div className="error-message">{event.error}</div>}
                 <Link to="/">log in</Link>
                 <input type="submit" value="sign up" />
             </form>

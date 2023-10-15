@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../store/store.ts";
+import { RootState } from "store/store.ts";
 
 export const useGetUser = () => {
   const userId = useSelector((state: RootState) => state.auth.userId)

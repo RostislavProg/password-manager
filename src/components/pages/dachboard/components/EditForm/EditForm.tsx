@@ -1,12 +1,11 @@
 import './EditForm.css'
 
-import React, { useReducer, ChangeEvent, FormEvent } from "react";
+import React, { ChangeEvent, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editContent } from "../../../../../store/auth/auth.slice.ts";
-import { select } from "../../../../../store/edit/edit.slice.ts";
-import { FormsState } from "../../../../../types/states.ts";
-import { EventFormAction } from '../../../../../types/actions.ts';
-import { RootState } from '../../../../../store/store.ts';
+import { editContent } from "store/auth/auth.slice.ts";
+import { select } from "store/edit/edit.slice.ts";
+import { RootState } from 'store/store.ts';
+import useReducerForForms from 'hooks/useReducerForForms';
 
 
 const EditForm: React.FC = () => {
@@ -14,19 +13,7 @@ const EditForm: React.FC = () => {
     const { selectedUnitId } = useSelector((state: RootState) => state.edit) as { selectedUnitId: string };
     const dispatch = useDispatch()
 
-    const [event, updateEvent] = useReducer((state: FormsState, action: EventFormAction) => {
-        switch(action.type) {
-            case 'logUpdate': 
-                return { ...state, log: action.log || '' };
-            case 'passUpdate': 
-                return { ...state, pass: action.pass || '' };
-            case 'errorUpdate': 
-                return { ...state, error: action.error || '' };
-            case 'zeroing': 
-                return { ...state, log: '', pass: '', error: '' };
-            default: return state;
-        }
-    }, {log: '', pass: '', error: ''});
+    const [event, updateEvent] = useReducerForForms();
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -36,7 +23,7 @@ const EditForm: React.FC = () => {
                 type: 'errorUpdate',
                 error: 'Fill in all fields'
             })
-        } else if (event.log.length <= 6 || event.pass.length <= 6) {
+        } else if (event.log.length < 8 || event.pass.length < 8) {
             updateEvent({
                 type: 'errorUpdate',
                 error: 'Login and password must be longer than 8 characters'
@@ -45,32 +32,26 @@ const EditForm: React.FC = () => {
             const unitToEdit = {id: selectedUnitId, log: event.log, pass: event.pass}
             dispatch(editContent(unitToEdit));
             dispatch(select(""))
-            updateEvent({type: 'zeroing'})
+            updateEvent({type: 'reset'})
         }
     }
 
-    const handleLogChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>, type: any) => {
+        const {name, value} = e.target;
         updateEvent({
-            type: 'logUpdate',
-            log: e.target.value
-        });
-    }
-
-    const handlePassChange = (e: ChangeEvent<HTMLInputElement>) => {
-        updateEvent({
-            type: 'passUpdate',
-            pass: e.target.value
-        });
+            type,
+            [name]: value
+        })
     }
 
     return (
         <div className="add">
             {selectedUnitId ? 
                 <form onSubmit={handleSubmit}>
-                    <input onChange={handleLogChange} value={event.log} placeholder="Login" type="text" />
-                    <input onChange={handlePassChange} value={event.pass} placeholder="Password" type="password" />
+                    <input onChange={(e) => handleChange(e, "logUpdate")} value={event.log} name='log' placeholder="Login" type="text" />
+                    <input onChange={(e) => handleChange(e, "passUpdate")} value={event.pass} name='pass' placeholder="Password" type="password" />
                     <input type="submit" value="EDIT"/>
-                {event.error && <div className="error-message" style={{ color: '#e61a1a', fontSize: '12px' }}>{event.error}</div>}
+                {event.error && <div className="error-message">{event.error}</div>}
                 </form> : <span>Select what you want change</span>}
         </div>
     );

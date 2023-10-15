@@ -1,12 +1,11 @@
 import './Autorisation.css';
 
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { login } from "../../../store/auth/auth.slice.ts";
-import { AuthState } from "../../../types/states.ts";
-import { EventAction } from "../../../types/actions.ts"
-import { RootState } from '../../../store/store.ts';
+import { login } from "store/auth/auth.slice.ts";
+import { RootState } from 'store/store.ts';
+import useReducerForAuthAndReg from 'hooks/useReducerForAuthAndReg';
 
 
 const Autorisation: React.FC = () => {
@@ -16,23 +15,12 @@ const Autorisation: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (jsonUserID !== null && jsonUserID !== "") {
+        if (jsonUserID) {
             navigate('/dashboard');
         }
     }, []);
 
-    const [event, updateEvent] = useReducer((state: AuthState, action: EventAction) => {
-        switch (action.type) {
-            case 'loginUpdate':
-                return { ...state, login: action.login };
-            case 'passwordUpdate':
-                return { ...state, password: action.password };
-            case 'errorUpdate':
-                return { ...state, error: action.error };
-            default:
-                return state;
-        }
-    }, { login: '', password: '', error: '' });
+    const [event, updateEvent] = useReducerForAuthAndReg();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -41,7 +29,7 @@ const Autorisation: React.FC = () => {
             account.login === event.login && account.password === event.password
         );
 
-        if (event.login === '' || event.password === '') {
+        if (!event.login || !event.password) {
             updateEvent({
                 type: 'errorUpdate',
                 error: 'Fill in all fields'
@@ -57,38 +45,34 @@ const Autorisation: React.FC = () => {
         }
     };
 
-    const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>, type: any) => {
+        const {name, value} = e.target;
         updateEvent({
-            type: 'loginUpdate',
-            login: e.target.value
-        });
-    };
-
-    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        updateEvent({
-            type: 'passwordUpdate',
-            password: e.target.value
-        });
-    };
+            type,
+            [name]: value
+        })
+    }
 
     return (
         <section className='autoAndReg'>
             <h1>Autorisation</h1>
             <form onSubmit={handleSubmit}>
                 <input
-                    onChange={handleLoginChange}
+                    onChange={(e) => handleChange(e, "loginUpdate")}
+                    name='login'
                     value={event.login}
                     placeholder='Login'
                     type="text"
                 />
 
                 <input
-                    onChange={handlePasswordChange}
+                    onChange={(e) => handleChange(e, "passwordUpdate")}
+                    name='password'
                     value={event.password}
                     placeholder='Password'
                     type="password"
                 />
-                {event.error && <div className="error-message" style={{ paddingTop: '15px', color: '#e61a1a' }}>{event.error}</div>}
+                {event.error && <div className="error-message">{event.error}</div>}
                 <Link to="/registration">sign up</Link>
                 <input type="submit" value="log in" />
             </form>

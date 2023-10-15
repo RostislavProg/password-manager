@@ -3,15 +3,16 @@ import Dashboard from './pages/dachboard/Dashboard.tsx';
 import Autorisation from './pages/autorisation/Autorisation.tsx'
 import Registration from './pages/registration/Registration.tsx';
 import { Route, Routes } from 'react-router-dom';
-import { jsonContent } from "../store/auth/auth.slice.ts";
+import { jsonContent } from "store/auth/auth.slice.ts";
 import { useDispatch } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { parseLocalStorageItem } from 'hooks/useParseLSItem.ts';
 
 const App = () => {
-
-  const jsonUserID = JSON.parse(localStorage.getItem('userId') ?? 'null');
-  const jsonAccounts = JSON.parse(localStorage.getItem('accounts') ?? 'null');
-  const jsonAccountsContent = JSON.parse(localStorage.getItem('accountsContent') ?? 'null');
+  
+  const jsonUserID = parseLocalStorageItem('userId');
+  const jsonAccounts = parseLocalStorageItem('accounts');
+  const jsonAccountsContent = parseLocalStorageItem('accountsContent')
     
   const dispatch = useDispatch();
   

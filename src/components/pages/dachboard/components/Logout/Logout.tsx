@@ -4,8 +4,8 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../../../../../store/auth/auth.slice.ts'; // Удалите расширение .ts
-import { useGetUser } from '../../../../../hooks/useGetUser.ts'; // Удалите расширение .ts
+import { logout } from 'store/auth/auth.slice.ts';
+import { useGetUser } from 'hooks/useGetUser.ts';
 
 const Logout: React.FC = () => {
 

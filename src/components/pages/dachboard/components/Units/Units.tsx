@@ -4,8 +4,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import SingleUnit from '../SingleUnit/SingleUnit.tsx';
 import { Col } from 'react-bootstrap';
-import { useGetUser } from '../../../../../hooks/useGetUser.ts';
-import { RootState } from '../../../../../store/store.ts';
+import { useGetUser } from 'hooks/useGetUser.ts';
+import { RootState } from 'store/store.ts';
 
 const Units: React.FC = () => {
 
